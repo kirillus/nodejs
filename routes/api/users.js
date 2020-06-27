@@ -5,7 +5,9 @@ const router = express.Router();
 // @desc    Register user
 // @access  Public
 router.post('/', (req, res) => {
-  console.log(req.body);
+  const {username, password, firstname} = req.body;
+
+
   res.send('User Router');
 });
 
