@@ -1,11 +1,13 @@
-const express = require('express');
-const router = express.Router();
-const auth = require('../../middleware/auth');
-const config = require('config');
-const User = require('../../models/User');
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
-const { check, validationResult } = require('express-validator');
+// const express = require('express');
+// const router  = express.Router();
+const express = require('express'),
+  router = express.Router(),
+  auth = require('../../middleware/auth'),
+  config = require('config'),
+  User = require('../../models/User'),
+  bcrypt = require('bcryptjs'),
+  jwt = require('jsonwebtoken'),
+  {check, validationResult} = require('express-validator');
 
 // @route   POST api/users
 // @desc    Authorization
@@ -22,7 +24,7 @@ router.post('/', [
 
   try {
 
-    let user = await User.findOne({ email });
+    let user = await User.findOne({email});
 
     if (!user) {
       return res.status(400).json({errors: [{msg: 'Invalid Credentials'}]})
@@ -43,20 +45,19 @@ router.post('/', [
     jwt.sign(
       payload,
       config.get('jwtSecret'),
-      { expiresIn: 36000 },
+      {expiresIn: 36000},
       (err, token) => {
         if (err) throw err;
-        res.json({ token });
+        res.json({token});
       }
     );
 
-  } catch(err) {
+  } catch (err) {
     console.error(err.message);
     res.status(500).send('Server error');
   }
 
 });
-
 
 
 // @route   GET api/auth
@@ -66,7 +67,7 @@ router.get('/', auth, async (req, res) => {
   try {
     const user = await User.findById(req.user.id).select('-password');
     res.json(user);
-  } catch(err) {
+  } catch (err) {
     console.error(err.message);
     res.status(500).send('Server error');
   }

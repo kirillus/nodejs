@@ -13,7 +13,8 @@ const connectDB = async () => {
       useUnifiedTopology: true,
       useCreateIndex: true
     });
-    console.log('MongooseDB connected....');
+    console.log('MongooseDB connected successfully...');
+
   } catch (err) {
     console.log(err.message);
 

@@ -4,8 +4,8 @@
   "description": "testing the nodejs with docker",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "server": "nodemon server.js",
+    "start": "node --unhandled-rejections=strict server.js",
+    "server": "nodemon --unhandled-rejections=strict server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -27,5 +27,9 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.19",
     "request": "^2.88.2"
+  },
+  "devDependencies": {
+    "ts-loader": "^7.0.5",
+    "typescript": "^3.9.5"
   }
 }
